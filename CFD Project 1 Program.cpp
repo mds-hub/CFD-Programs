@@ -12,7 +12,7 @@ double L=1, N{};
 int i=1;
 int z;
 
-void analytical(){
+void analytical(){ //void function that computes the analytical solution for the 1-D Diffusion Equation
 printf("\nANALYTICAL SOLUTION\n");
 double dx = L/N;
 i=1;
@@ -40,7 +40,7 @@ i++;
 }
 }
 
-void setup(){
+void setup(){ //void function that calculates the tridiagonal coefficients for each mesh size then computes the cell centered values for that mesh size by solving the tridiagonal matrix using the Thomas Algorithm
 perim = (M_PI)*d;
 area = (M_PI_4)*d*d;
 printf("Please Input the Number of Cells\n");
@@ -64,9 +64,9 @@ while(i < (N+1)){
         y[0][0] = b;
         y[0][1] = c;
         q[0] = d;
-        ofstream triData;
-        triData.open("tridicoeff.csv", ios::app);
-        triData << 0 << endl << b << endl << c << endl << d << endl;
+        ofstream triData; 
+        triData.open("tridicoeff.csv", ios::app); //opens a csv file entitled "tridicoeff" in order to write data to the file and manipulate it in excel
+        triData << 0 << endl << b << endl << c << endl << d << endl; //writes output data to the csv file
     }
         else if(i >= 2 && i < N){   //Interior Cells
 
@@ -164,7 +164,7 @@ double final[z];
 
 
 
-int main(){
+int main(){ //outputs all calculated values
 
     setup();
     analytical();
