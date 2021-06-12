@@ -5,7 +5,7 @@
 #include <math.h>
 #include <vector>
 using namespace std;
-double gamma = 0.25; //diffusion equation variables
+double gamma = 0.25; //convection-diffusion equation variables
 double phizero = 2, phiL = 1;
 double rho = 1;
 double u{};
@@ -14,7 +14,7 @@ int i=1;
 int z;
 
 
-void analytical(){
+void analytical(){ //void function for calculating analytical solution to convection-diffusion equation
 printf("\nANALYTICAL SOLUTION\n");
 double dx = L/N;
 i=1;
@@ -37,7 +37,7 @@ ofstream outDatadist;
 }
 }
 
-void central(){
+void central(){ //void function for numerically solving convection-diffusion equation using the central method to approximate the convection term
 printf("Please Input the Number of Cells\n");
 printf("N: ");
 cin >> N;
@@ -50,7 +50,7 @@ float dx = L/N;
 double F = rho*u;
 double y[z][z];
 double q[z];
-printf("\nTRIDIAGONAL COEFFICIENTS (Central Method)\n");
+printf("\nTRIDIAGONAL COEFFICIENTS (Central Method)\n"); //the following code computes the tridiagonal coefficients for the convection-diffusion equation and solves the tridiagonal matrix using the Thomas Algorithm
 while(i < (N+1)){
     if(i == 1){
         double b = ((F/2)+((3*gamma)/dx));
@@ -157,7 +157,7 @@ double final[z];
 
 }
 
-void upwind(){
+void upwind(){ //void function that similarly solves the convection-diffusion equation but using the 1st Order Upwind method to approximate the convection term
 float dx = L/N;
 double F = rho*u;
 double y[z][z];
@@ -269,7 +269,7 @@ double final[z];
 
 }
 
-int main(){
+int main(){ //outputs all computed values 
 
     central();
     upwind();
